@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+
+  covid-19:
+    image: xddxdd/php7-fpm
+    container_name: covid-19
+    working_dir: /var/www
+    command: symfony serve
+    environment:
+      docker: "true"
+    ports:
+      - 8787:8000
+    volumes:
+      - .:/var/www
+      - ./logs:/var/www/logs
+
+volumes:
+  logs:
+    driver: local
