@@ -40,4 +40,13 @@ class CovidController extends AbstractController
         return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'no countries found']);
     }
 
+    /**
+     * @Route("/country", name="country")
+     */
+    public function country($country)
+    {
+        $response = $this->client->request('GET', 'https://api.covid19api.com/live/country/' . $country);
+        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'no countries found']);
+    }
+
 }
