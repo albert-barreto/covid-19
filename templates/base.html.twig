@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            <link href="demo.css" rel="stylesheet">
-            <link href="../dist/svgMap.css" rel="stylesheet">
-            <script src="../dist/svgMap.js"></script>
+            <link href="{{ asset('assets/css/demo.css') }}" rel="stylesheet">
+            <link href="{{ asset('assets/css/svgMap.css') }}" rel="stylesheet">
+            <script src="{{ asset('assets/js/svgMap.js') }}"></script>
         {% endblock %}
     </head>
     <body>
