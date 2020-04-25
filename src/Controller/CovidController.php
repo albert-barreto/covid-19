@@ -11,6 +11,16 @@ use Symfony\Component\HttpClient\HttpClient;
  */
 class CovidController extends AbstractController
 {
+    /** @var HttpClient */
+    private $client;
+    /**
+     * CovidController constructor.
+     */
+    public function __construct()
+    {
+        $this->client = HttpClient::create();
+    }
+
     /**
      * @Route("/", name="index")
      */
@@ -26,17 +36,8 @@ class CovidController extends AbstractController
      */
     public function countries()
     {
-        $client = HttpClient::create();
-        $response = $client->request('GET', 'https://api.covid19api.com/countries');
-
-        $statusCode = $response->getStatusCode();
-        $contentType = $response->getHeaders()['content-type'][0];
-        $content = $response->getContent();
-        $content = $response->toArray();
-
-        return $this->json([
-            'data' => $content
-        ]);
+        $response = $this->client->request('GET', 'https://api.covid19api.com/countries');
+        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'no countries found']);
     }
 
 }
