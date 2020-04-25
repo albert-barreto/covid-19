@@ -32,7 +32,7 @@ class CovidController extends AbstractController
     }
 
     /**
-     * @Route("/countries", name="countries")
+     * @Route("/countries", name="countries, methods={GET}")
      */
     public function countries()
     {
@@ -41,7 +41,7 @@ class CovidController extends AbstractController
     }
 
     /**
-     * @Route("/country", name="country")
+     * @Route("/countries/{country}", name="country, methods={GET}")
      */
     public function country($country)
     {
