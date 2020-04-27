@@ -26,8 +26,10 @@ class CovidController extends AbstractController
      */
     public function index()
     {
+        $x = 10;
         return $this->render('covid/index.html.twig', [
             'controller_name' => 'CovidController',
+            'x' => $x
         ]);
     }
 
@@ -37,7 +39,7 @@ class CovidController extends AbstractController
     public function countries()
     {
         $response = $this->client->request('GET', 'https://api.covid19api.com/countries');
-        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'no countries found']);
+        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'countries not found']);
     }
 
     /**
@@ -46,7 +48,7 @@ class CovidController extends AbstractController
     public function country($country)
     {
         $response = $this->client->request('GET', 'https://api.covid19api.com/live/country/' . $country);
-        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'no countries found']);
+        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'country not found']);
     }
 
 }
