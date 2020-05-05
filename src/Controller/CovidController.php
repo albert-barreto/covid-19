@@ -48,7 +48,7 @@ class CovidController extends AbstractController
     public function country($country)
     {
         $response = $this->client->request('GET', 'https://api.covid19api.com/live/country/' . $country);
-        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()) : $this->json(['error' => 'country not found']);
+        return ($response->getStatusCode() == 200) ? $this->json($response->toArray()[count($response->toArray())-1]) : $this->json(['error' => 'country not found']);
     }
 
 }
